@@ -4,3 +4,5 @@ models
 tests
 results
 .idea
+actions/__pycache__/
+component/__pycache__/
