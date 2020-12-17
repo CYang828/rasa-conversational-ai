@@ -7,6 +7,7 @@
 1. Install require packages
 ```
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+poetry install
 python -m pip install -U pip
 pip3 install rasa-x --extra-index-url https://pypi.rasa.com/simple
 ```
