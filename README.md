@@ -1,6 +1,6 @@
 # Getting Started
 
-## More information, please refer to newest instructions at [official Rasa NLU document](https://rasa.com/docs/)
+![](asset/xbot.jpg)
 
 ## Usage 
 
@@ -11,7 +11,7 @@ python -m pip install -U pip
 pip3 install rasa-x --extra-index-url https://pypi.rasa.com/simple
 ```
 
-refer to: [poetry documentation](https://python-poetry.org/docs/)
+refer to: [poetry documentation](https://python-poetry.org/docs/) and newest [official Rasa NLU document](https://rasa.com/docs/)
 
 
 2. Train model by running:
@@ -37,4 +37,4 @@ rasa run actions
 rasa x
 ```
 
-7. Chat with your Bot and Enjoy/Develop it.
+7. Chat with your Conversational AI and Enjoy/Develop it.
