@@ -1,0 +1,470 @@
+version: "2.0"
+stories:
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+  - action: number_form
+  - active_loop: number_form
+  - active_loop: null
+  - intent: thanks
+  - action: utter_noworries
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - requested_slot: business
+  - slot_was_set:
+    - business: 开房记录
+  - slot_was_set:
+    - business: 开房记录
+  - intent: thanks
+  - action: utter_noworries
+- story: happy path：item+number+business+business+business
+  steps:
+  - intent: request_number
+    entities:
+    - type: 身份证号码
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 身份证号码
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: '431124199720139720'
+  - slot_was_set:
+    - type: 身份证号码
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: inform_business
+    entities:
+    - business: 违章记录
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 身份证号码
+  - slot_was_set:
+    - number: '431124199720139720'
+  - slot_was_set:
+    - business: 违章记录
+  - slot_was_set:
+    - business: null
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: inform_business
+    entities:
+    - business: 开房信息
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 身份证号码
+  - slot_was_set:
+    - number: '431124199720139720'
+  - slot_was_set:
+    - business: 开房信息
+  - slot_was_set:
+    - business: null
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: inform_business
+    entities:
+    - business: 出行轨迹
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 身份证号码
+  - slot_was_set:
+    - number: '431124199720139720'
+  - slot_was_set:
+    - business: 出行轨迹
+  - slot_was_set:
+    - business: null
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: affirm
+  - action: utter_answer_affirm
+- story: happy path：number+business+business+business
+  steps:
+  - intent: request_number
+    entities:
+    - number: '18902346721'
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - number: '18902346721'
+  - slot_was_set:
+    - type: 电话号码
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: inform_business
+    entities:
+    - business: 违章记录
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 电话号码
+  - slot_was_set:
+    - number: '18902346721'
+  - slot_was_set:
+    - business: 违章记录
+  - slot_was_set:
+    - business: null
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: inform_business
+    entities:
+    - business: 犯罪记录
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 电话号码
+  - slot_was_set:
+    - number: '18902346721'
+  - slot_was_set:
+    - business: 犯罪记录
+  - slot_was_set:
+    - business: null
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: inform_business
+    entities:
+    - business: 开房信息
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 电话号码
+  - slot_was_set:
+    - number: '18902346721'
+  - slot_was_set:
+    - business: 开房信息
+  - slot_was_set:
+    - business: null
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: affirm
+  - action: utter_answer_affirm
+- story: unhappy：chit+answer
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+    entities:
+    - type: 身份证号码
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 身份证号码
+  - slot_was_set:
+    - number: null
+  - slot_was_set:
+    - business: null
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+    entities:
+    - date_time: 今天
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: '440123199087233467'
+  - slot_was_set:
+    - type: 身份证号码
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: thanks
+  - action: utter_noworries
+- story: very unhappy：chit + chit + answer
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+    entities:
+    - type: 电话号码
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 电话号码
+  - slot_was_set:
+    - number: null
+  - slot_was_set:
+    - business: null
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: '18902346721'
+  - slot_was_set:
+    - type: 电话号码
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: thanks
+  - action: utter_noworries
+- story: very very unhappy：chitchat+chitchat+chitchat+answer
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+    entities:
+    - type: 电话号码
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 电话号码
+  - slot_was_set:
+    - number: null
+  - slot_was_set:
+    - business: null
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: '18902346721'
+  - slot_was_set:
+    - type: 电话号码
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: thanks
+  - action: utter_noworries
+- story: unhappy path：stop and really stop path
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+    entities:
+    - type: 身份证号码
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 身份证号码
+  - slot_was_set:
+    - number: null
+  - slot_was_set:
+    - business: null
+  - slot_was_set:
+    - requested_slot: number
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: deny
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: thanks
+  - action: utter_noworries
+- story: unhappy path：stop but continue path
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+    entities:
+    - type: 电话号码
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 电话号码
+  - slot_was_set:
+    - number: null
+  - slot_was_set:
+    - business: null
+  - slot_was_set:
+    - requested_slot: number
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: '18902346721'
+  - slot_was_set:
+    - type: 电话号码
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: thanks
+  - action: utter_noworries
+- story: unhappy path：chitchat stop but continue path
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+    entities:
+    - type: 身份证号码
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 身份证号码
+  - slot_was_set:
+    - number: null
+  - slot_was_set:
+    - business: null
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: '440123199087233467'
+  - slot_was_set:
+    - type: 身份证号码
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: thanks
+  - action: utter_noworries
+- story: 'unhappy path: stop but continue and chitchat path'
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+    entities:
+    - type: 电话号码
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 电话号码
+  - slot_was_set:
+    - number: null
+  - slot_was_set:
+    - business: null
+  - slot_was_set:
+    - requested_slot: number
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: '18902346721'
+  - slot_was_set:
+    - type: 电话号码
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: thanks
+  - action: utter_noworries
+- story: 'unhappy path: chitchat stop but continue and chitchat path'
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 电话号码
+  - slot_was_set:
+    - number: null
+  - slot_was_set:
+    - business: null
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: affirm
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - slot_was_set:
+    - number: '18902346721'
+  - slot_was_set:
+    - type: 电话号码
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: thanks
+  - action: utter_noworries
+- story: 'unhappy path:  chitchat, stop and really stop path'
+  steps:
+  - intent: greet
+  - action: utter_answer_greet
+  - intent: request_number
+  - action: number_form
+  - active_loop: number_form
+  - slot_was_set:
+    - type: 电话号码
+  - slot_was_set:
+    - number: null
+  - slot_was_set:
+    - business: null
+  - slot_was_set:
+    - requested_slot: number
+  - intent: chitchat
+  - action: utter_chitchat
+  - action: number_form
+  - slot_was_set:
+    - requested_slot: number
+  - intent: stop
+  - action: utter_ask_continue
+  - intent: deny
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - intent: thanks
+  - action: utter_noworries
