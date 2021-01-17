@@ -1,13 +1,14 @@
-# Getting Started
+# A simple example of Chinese chatbot using RASA framework (Kaikeba NLP vip course).
 
-![](asset/xbot.jpg)
+## Getting Started
+command line demo:
+![](asset/example_1.png)
 
 ## Usage 
 
 1. Install require packages
 ```
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-poetry install
 python -m pip install -U pip
 pip3 install rasa-x --extra-index-url https://pypi.rasa.com/simple
 ```
@@ -22,13 +23,13 @@ refer to: [poetry documentation](https://python-poetry.org/docs/) and newest [of
    Otherwise, your model will be saved at /models/default
 
 ```
-rasa train --num-threads 4
+rasa train --num-threads 4 % multi-threads for efficient computation
 ```
 
-5. Run the raas action server:
+5. Run the raas action server and interact with the bot on the command line interfact:
 
 ```
-rasa run actions
+rasa run actions & rasa shell
 ```
 
 
