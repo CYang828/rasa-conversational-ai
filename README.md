@@ -2,7 +2,7 @@
 
 ## Getting Started
 Command line demo:
-![](asset/example_1.png)
+![](asset/example.png)
 
 ## Usage 
 
@@ -23,7 +23,7 @@ refer to: [poetry documentation](https://python-poetry.org/docs/) and newest [of
    Otherwise, your model will be saved at /models/default
 
 ```
-rasa train --num-threads 4 % multi-threads for efficient computation
+rasa train --num-threads 4 # multi-threads for efficient computation
 ```
 
 5. Run the raas action server and interact with the bot on the command line interfact:
