@@ -1,7 +1,7 @@
-# A simple example of Chinese chatbot using RASA framework (Kaikeba NLP vip course).
+# A simple example of Chinese chatbot using RASA framework (developing...)
 
 ## Getting Started
-command line demo:
+Command line demo:
 ![](asset/example_1.png)
 
 ## Usage 
