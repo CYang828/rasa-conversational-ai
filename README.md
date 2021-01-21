@@ -1,8 +1,8 @@
-# A simple example of Chinese chatbot using RASA framework (developing...)
+# A simple Chinese chatbot with weather request functionality using RASA framework
 
 ## Getting Started
 Command line demo:
-![](asset/example.png)
+![](asset/example_1)
 
 ## Usage 
 
