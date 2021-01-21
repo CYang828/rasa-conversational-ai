@@ -6,7 +6,8 @@ from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk.forms import FormAction
 
 from actions import third_chat
-from actions.third_weather import get_weather_by_day
+# from actions.third_weather import get_weather_by_day
+from actions.qweather import get_weather_by_day
 from requests import (
     ConnectionError,
     HTTPError,
@@ -105,17 +106,30 @@ def get_text_weather_date(address, date_time, date_time_number):
     except (ConnectionError, HTTPError, TooManyRedirects, Timeout) as e:
         text_message = "{}".format(e)
     else:
+        # text_message_tpl = """
+        #     {} {} ({}) 的天气情况为：白天：{}；夜晚：{}；气温：{}-{} °C
+        # """
+        # text_message = text_message_tpl.format(
+        #     result['location']['name'],
+        #     date_time,
+        #     result['result']['date'],
+        #     result['result']['text_day'],
+        #     result['result']['text_night'],
+        #     result['result']["high"],
+        #     result['result']["low"],
+        # )
         text_message_tpl = """
-            {} {} ({}) 的天气情况为：白天：{}；夜晚：{}；气温：{}-{} °C
+            我掐指一算，{} {} ({}) 的天气情况为：白天：{}；夜晚：{}；气温：{}-{} °C；湿度：{}
         """
         text_message = text_message_tpl.format(
-            result['location']['name'],
+            result['location'],
             date_time,
-            result['result']['date'],
-            result['result']['text_day'],
-            result['result']['text_night'],
-            result['result']["high"],
-            result['result']["low"],
+            result['fxDate'],
+            result['textDay'],
+            result['textNight'],
+            result["tempMin"],
+            result["tempMax"],
+            result["humidity"]
         )
 
     return text_message
