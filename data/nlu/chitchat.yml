@@ -1,6 +1,6 @@
 version: "2.0"
 nlu:
-- intent: greet
+- intent: chitchat/greet
   examples: |
     - 你好
     - 你好啊
@@ -18,7 +18,7 @@ nlu:
     - 哈喽哈喽
     - hello hello
     - 喂喂
-- intent: goodbye
+- intent: chitchat/goodbye
   examples: |
     - goodbye
     - bye
@@ -38,7 +38,7 @@ nlu:
     - 好了，就说这么多了
     - 好了，先这样
     - 没事
-- intent: whoareyou
+- intent: chitchat/whoareyou
   examples: |
     - 你是谁
     - 我知道你吗
@@ -53,13 +53,13 @@ nlu:
     - 是谁？
     - 可以告诉我你的名字吗
     - 你叫什么名字
-- intent: whattodo
+- intent: chitchat/whattodo
   examples: |
     - 你支持什么功能
     - 你有什么功能
     - 你能干什么
     - 你能做什么
-- intent: thanks
+- intent: chitchat/thanks
   examples: |
     - 谢谢
     - thanks
@@ -69,7 +69,7 @@ nlu:
     - 你帮了我大忙，谢谢你小智
     - 非常感谢
     - 谢了
-- intent: deny
+- intent: chitchat/deny
   examples: |
     - 不了
     - 算了
@@ -89,7 +89,7 @@ nlu:
     - 你长得很美，就不要想得太美。
     - 拒绝
     - 不行
-- intent: affirm
+- intent: chitchat/affirm
   examples: |
     - 知道了
     - 是的
@@ -110,7 +110,7 @@ nlu:
     - 行
     - 还行
     - 当然可以
-- intent: chitchat
+- intent: chitchat/funny
   examples: |
     - 你是不是傻
     - 你喜欢靓仔靓女吗
@@ -145,7 +145,7 @@ nlu:
     - 你今天看不起不错哟
     - 你觉得华为手机怎么样
     - 你知不知道新型冠形病毒
-- intent: stop
+- intent: chitchat/stop
   examples: |
     - 你是不是傻
     - 你就像个傻逼一样

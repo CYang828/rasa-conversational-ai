@@ -1,0 +1,61 @@
+{
+  "request_weather": {
+    "precision": 0.7142857142857143,
+    "recall": 0.7352941176470589,
+    "f1-score": 0.7246376811594202,
+    "support": 34,
+    "confused_with": {
+      "inform": 8,
+      "chitchat": 1
+    }
+  },
+  "request_business": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 34,
+    "confused_with": {}
+  },
+  "inform": {
+    "precision": 0.6785714285714286,
+    "recall": 0.6785714285714286,
+    "f1-score": 0.6785714285714286,
+    "support": 28,
+    "confused_with": {
+      "request_weather": 7,
+      "chitchat": 2
+    }
+  },
+  "chitchat": {
+    "precision": 0.9652777777777778,
+    "recall": 0.972027972027972,
+    "f1-score": 0.9686411149825783,
+    "support": 143,
+    "confused_with": {
+      "request_weather": 3,
+      "inform": 1
+    }
+  },
+  "request_number": {
+    "precision": 1.0,
+    "recall": 0.9672131147540983,
+    "f1-score": 0.9833333333333333,
+    "support": 61,
+    "confused_with": {
+      "chitchat": 2
+    }
+  },
+  "accuracy": 0.92,
+  "macro avg": {
+    "precision": 0.8716269841269841,
+    "recall": 0.8706213266001116,
+    "f1-score": 0.871036711609352,
+    "support": 300
+  },
+  "weighted avg": {
+    "precision": 0.9210681216931217,
+    "recall": 0.92,
+    "f1-score": 0.9204556464508744,
+    "support": 300
+  }
+}

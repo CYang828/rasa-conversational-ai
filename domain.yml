@@ -1,20 +1,54 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- affirm
-- deny
-- greet
-- goodbye
-- thanks
-- whoareyou
-- whattodo
-- request_weather
-- request_number
-- inform
-- inform_business
-- stop
-- chitchat
+- chitchat/greet:
+    use_entities: true
+- chitchat/goodbye:
+    use_entities: true
+- chitchat/whoareyou:
+    use_entities: true
+- chitchat/whattodo:
+    use_entities: true
+- chitchat/thanks:
+    use_entities: true
+- chitchat/deny:
+    use_entities: true
+- chitchat/affirm:
+    use_entities: true
+- chitchat/funny:
+    use_entities: true
+- chitchat/stop:
+    use_entities: true
+- request_weather:
+    use_entities: true
+- request_number:
+    use_entities: true
+- request_business:
+    use_entities: true
+- whoareyou:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- deny:
+    use_entities: true
+- thanks:
+    use_entities: true
+- stop:
+    use_entities: true
+- chitchat:
+    use_entities: true
+- whattodo:
+    use_entities: true
+- affirm:
+    use_entities: true
+- greet:
+    use_entities: true
+- inform:
+    use_entities: true
 entities:
 - date_time
 - address
@@ -23,36 +57,45 @@ entities:
 - business
 slots:
   date_time:
-    type: unfeaturized
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   address:
-    type: unfeaturized
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   type:
-    type: unfeaturized
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   number:
-    type: unfeaturized
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   business:
-    type: unfeaturized
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
     auto_fill: false
     influence_conversation: false
   requested_slot:
-    type: unfeaturized
+    type: rasa.shared.core.slots.AnySlot
+    initial_value: null
+    auto_fill: true
     influence_conversation: false
 responses:
+  utter_chitchat/greet:
+  - text: 您好！请问我可以帮到您吗？
+  - text: 您好！很高兴为您服务。请说出您要查询的功能？
+  - image: http://aimaksen.bslience.cn/hello.jpeg
+    text: 你好啊
   utter_answer_affirm:
   - text: 嗯嗯，好的！
   - text: 嗯嗯，很开心能够帮您解决问题~
   - text: 嗯嗯，还需要什么我能够帮助您的呢？
-  utter_answer_greet:
-  - text: 您好！请问我可以帮到您吗？
-  - text: 您好！很高兴为您服务。请说出您要查询的功能？
   utter_answer_goodbye:
   - text: 再见
   - text: 拜拜
@@ -113,5 +156,23 @@ actions:
 - weather_form
 - number_form
 forms:
-  weather_form: {}
-  number_form: {}
+  weather_form:
+    required_slots:
+      address:
+      - entity: address
+        type: from_entity
+      date_time:
+      - entity: date_time
+        type: from_entity
+  number_form:
+    required_slots:
+      business:
+      - entity: business
+        type: from_entity
+      number:
+      - entity: number
+        type: from_entity
+      type:
+      - entity: type
+        type: from_entity
+e2e_actions: []
