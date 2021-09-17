@@ -2,18 +2,18 @@ version: "2.0"
 stories:
 - story: happy path
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
   - action: number_form
   - active_loop: number_form
   - active_loop: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries
 - story: unhappy：chit+answer
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
     entities:
     - type: 身份证号码
@@ -41,12 +41,12 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries
 - story: very unhappy：chit + chit + answer
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
     entities:
     - type: 电话号码
@@ -77,12 +77,12 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries
 - story: very very unhappy：chitchat+chitchat+chitchat+answer
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
     entities:
     - type: 电话号码
@@ -118,12 +118,12 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries
-- story: unhappy path：stop and really stop path
+- story: unhappy path：chitchat/stop and really chitchat/stop path
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
     entities:
     - type: 身份证号码
@@ -137,19 +137,19 @@ stories:
     - business: null
   - slot_was_set:
     - requested_slot: number
-  - intent: stop
+  - intent: chitchat/stop
   - action: utter_ask_continue
-  - intent: deny
+  - intent: chitchat/deny
   - action: action_deactivate_loop
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries
-- story: unhappy path：stop but continue path
+- story: unhappy path：chitchat/stop but continue path
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
     entities:
     - type: 电话号码
@@ -163,7 +163,7 @@ stories:
     - business: null
   - slot_was_set:
     - requested_slot: number
-  - intent: stop
+  - intent: chitchat/stop
   - action: utter_ask_continue
   - intent: affirm
   - action: number_form
@@ -176,12 +176,12 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries
-- story: unhappy path：chitchat stop but continue path
+- story: unhappy path：chitchat chitchat/stop but continue path
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
     entities:
     - type: 身份证号码
@@ -200,7 +200,7 @@ stories:
   - action: number_form
   - slot_was_set:
     - requested_slot: number
-  - intent: stop
+  - intent: chitchat/stop
   - action: utter_ask_continue
   - intent: affirm
   - action: number_form
@@ -213,12 +213,12 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries
-- story: 'unhappy path: stop but continue and chitchat path'
+- story: 'unhappy path: chitchat/stop but continue and chitchat path'
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
     entities:
     - type: 电话号码
@@ -232,7 +232,7 @@ stories:
     - business: null
   - slot_was_set:
     - requested_slot: number
-  - intent: stop
+  - intent: chitchat/stop
   - action: utter_ask_continue
   - intent: affirm
   - action: number_form
@@ -250,12 +250,12 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries
-- story: 'unhappy path: chitchat stop but continue and chitchat path'
+- story: 'unhappy path: chitchat chitchat/stop but continue and chitchat path'
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
   - action: number_form
   - active_loop: number_form
@@ -272,7 +272,7 @@ stories:
   - action: number_form
   - slot_was_set:
     - requested_slot: number
-  - intent: stop
+  - intent: chitchat/stop
   - action: utter_ask_continue
   - intent: affirm
   - action: number_form
@@ -290,12 +290,12 @@ stories:
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries
-- story: 'unhappy path:  chitchat, stop and really stop path'
+- story: 'unhappy path:  chitchat, chitchat/stop and really chitchat/stop path'
   steps:
-  - intent: greet
-  - action: utter_answer_greet
+  - intent: chitchat/greet
+  - action: utter_chitchat/greet
   - intent: request_number
   - action: number_form
   - active_loop: number_form
@@ -312,12 +312,12 @@ stories:
   - action: number_form
   - slot_was_set:
     - requested_slot: number
-  - intent: stop
+  - intent: chitchat/stop
   - action: utter_ask_continue
-  - intent: deny
+  - intent: chitchat/deny
   - action: action_deactivate_loop
   - active_loop: null
   - slot_was_set:
     - requested_slot: null
-  - intent: thanks
+  - intent: chitchat/thanks
   - action: utter_noworries

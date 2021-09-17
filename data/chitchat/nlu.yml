@@ -1,0 +1,169 @@
+version: "2.0"
+nlu:
+- intent: wantto
+  examples: |
+    - 我要点餐
+    - 我要玩游戏
+    - 我要打你
+    - 我想听相声
+    - 我想听歌
+    - 我要学习
+    - 我要涨薪
+    - 我要发财
+- intent: chitchat/greet
+  examples: |
+    - 你好
+    - 你好啊
+    - 早上好
+    - 晚上好
+    - hello
+    - hi
+    - 嗨
+    - 嗨喽
+    - 见到你很高兴
+    - 嘿
+    - 早
+    - 上午好
+    - hello哈喽
+    - 哈喽哈喽
+    - hello hello
+    - 喂喂
+- intent: chitchat/goodbye
+  examples: |
+    - goodbye
+    - bye
+    - bye bye
+    - 88
+    - 886
+    - 再见
+    - 拜
+    - 拜拜
+    - 拜拜，下次再聊
+    - 下次见
+    - 回头见
+    - 下次再见
+    - 下次再聊
+    - 有空再聊
+    - 先这样吧
+    - 好了，就说这么多了
+    - 好了，先这样
+    - 没事
+- intent: chitchat/whoareyou
+  examples: |
+    - 你是谁
+    - 我知道你吗
+    - 谁
+    - 我认识你吗
+    - 这是谁啊
+    - 是谁
+    - 请问你是谁
+    - 请问我认识你吗
+    - 你是哪位
+    - 你是？
+    - 是谁？
+    - 可以告诉我你的名字吗
+    - 你叫什么名字
+- intent: chitchat/whattodo
+  examples: |
+    - 你支持什么功能
+    - 你有什么功能
+    - 你能干什么
+    - 你能做什么
+- intent: chitchat/thanks
+  examples: |
+    - 谢谢
+    - thanks
+    - thank you
+    - 真的太感谢你了，帮了我大忙
+    - 谢谢你帮了我大忙
+    - 你帮了我大忙，谢谢你小智
+    - 非常感谢
+    - 谢了
+- intent: chitchat/deny
+  examples: |
+    - 不了
+    - 算了
+    - 不用了
+    - 不需要
+    - 不
+    - no
+    - 不可以
+    - 不是的
+    - 不认同
+    - 否定
+    - 不是这样子的
+    - 我不同意你的观点
+    - 不同意
+    - 不好
+    - 你长得很美，就不要想得太美。
+    - 拒绝
+    - 不行
+- intent: chitchat/affirm
+  examples: |
+    - 知道了
+    - 是的
+    - 当然
+    - 好的
+    - ok
+    - 嗯
+    - 可以
+    - 你可以这么做
+    - 你做得可以啊
+    - 同意
+    - 听起来不错
+    - 是这样的
+    - 的确是这样子的
+    - 我同意你的观点
+    - 对的
+    - 好滴
+    - 行
+    - 还行
+    - 当然可以
+- intent: stop
+  examples: |
+    - 你是不是傻
+    - 你就像个傻逼一样
+    - 真差劲，什么都不懂
+    - 真蠢
+    - 什么都查不到
+    - 你什么都不会
+    - 感觉你什么都不知道
+    - 你太蠢了
+    - 我不查了，太傻了
+    - 就这样吧
+    - 感觉你什么都不会
+    - 没有了
+    - 什么都没查到
+    - 我猜你是不是坏了
+- intent: user_info_name
+  examples: |
+    - 我叫 [张三](user_name)
+    - 我是 [蔡亮](user_name)
+    - [李四](user_name)
+    - [郭百祥](user_name)
+- intent: user_info_age
+  examples: |
+    - 今年 [28](user_age)
+    - 今年 [18](user_age)
+    - 今年 [16](user_age) 了
+    - [26岁](user_age)
+    - 我 [18](user_age) 了
+    - 今年我 [19岁](user_age) 了
+    - 我今年 [15岁](user_age)
+- intent: user_info_phone_number
+  examples: |
+    - 我电话是 [13678205321](user_phone_number)
+    - 我的电话号码是 [13502183079](user_phone_number)
+    - 电话是 [18399821072](user_phone_number)
+- intent: user_info_education
+  examples: |
+    - [高中](user_education)
+    - [本科](user_education)
+    - [硕士](user_education)
+    - [专科](user_education)
+    - [博士](user_education)
+    - [博后](user_education)
+    - 我 [本科](user_education) 学历
+- regex: user_phone_number
+  examples: |
+    - ((\d{3,4}-)?\d{7,8})|(((\+86)|(86))?(1)\d{10})

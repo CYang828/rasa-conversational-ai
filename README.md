@@ -1,6 +1,13 @@
 # 快速开始
 
-![](asset/xbot.jpg)
+使用 Rasa 构建中文对话机器人，项目包括
+- 闲聊
+- 知识库查询
+- 任务设置
+- 知识图谱使用
+- 自定义 Component
+
+欢迎加入，一起共建中文智能对话机器人 :robot:。
 
 ## 使用方法 
 
@@ -52,5 +59,21 @@ rasa x
 
 5. 持续更新对话机器人
 
-## 对话效果不好？
+## 领域对话测试
+### 闲聊领域
+```bash
+rasa data validate --domain domain/chitchat/domain.yml --data data/chitchat/ 
+rasa train --domain domain/chitchat/domain.yml --data data/chitchat/ --config config/chitchat.yml
+rasa shell --debug
+```
 
+### 健康领域
+```bash
+rasa data validate --domain domain/health/domain.yml --data data/health/
+rasa train --domain domain/health/domain.yml --data data/health/
+rasa train core -d domain/health/domain.yml -s data/health/story.yml
+RASA_X_PASSWORD=rasa rasa x --domain domain/health/domain.yml 
+```
+
+## TODO
+[这里](TODO.md) 有项目的 TODO 列表，欢迎提交你的想法，提交 PR，一起建设一个强大的对话机器人。

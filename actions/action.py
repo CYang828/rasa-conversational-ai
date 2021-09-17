@@ -15,6 +15,55 @@ from requests import (
 )
 
 
+class HealthForm(FormAction):
+
+    def name(self):
+        return "health_form"
+    
+    @staticmethod
+    def required_slots(tracker):
+        if tracker.get_slot('is_exercise') == True:
+            return ["is_exercise", "exercise", "sleep", "diet", "stress", "goal"]
+        else:
+            return ["is_exercise", "sleep", "diet", "stress", "goal"]
+
+    def slot_mappings(self) -> Dict[Text, Union[Dict, List[Dict]]]:
+        """A dictionary to map required slots to
+            - an extracted entity
+            - intent: value pairs
+            - a whole message
+            or a list of them, where a first match will be picked"""
+
+        return {
+            "is_exercise": [
+                self.from_intent(intent="chichat/affirm", value=True),
+                self.from_intent(intent="chichat/deny", value=False),
+                self.from_intent(intent="health_inform", value=True),
+            ],
+            "sleep": [
+                self.from_entity(entity="sleep"),
+                self.from_intent(intent="chitchat/deny", value="None"),
+            ],
+            "diet": [
+                self.from_text(intent="health_inform"),
+                self.from_text(intent="chichat/affirm"),
+                self.from_text(intent="chichat/deny"),
+            ],
+            "goal": [
+                self.from_text(intent="health_inform"),
+            ],
+        }
+        
+    def submit(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict]:
+
+        dispatcher.utter_message("Thanks, great job!")
+        return []
+
 class NumberForm(FormAction):
     """Example of a custom form action"""
 

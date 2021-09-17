@@ -1,0 +1,158 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- request_restaurant:
+    use_entities: []
+- chitchat:
+    use_entities: []
+- inform:
+    use_entities: true
+- affirm:
+    use_entities: true
+- deny:
+    use_entities: true
+- stop:
+    use_entities: true
+- thankyou:
+    use_entities: true
+- greet:
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+entities:
+- cuisine
+- number
+- feedback
+- seating
+slots:
+  cuisine:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  num_people:
+    type: rasa.shared.core.slots.FloatSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+    max_value: 1.0
+    min_value: 0.0
+  outdoor_seating:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  preferences:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  feedback:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  requested_slot:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+responses:
+  utter_ask_cuisine:
+  - text: What cuisine?
+  - text: 哪种菜系？
+  utter_ask_num_people:
+  - text: How many people?
+  - text: 多少人来？
+  utter_ask_outdoor_seating:
+  - text: Do you want to sit outside?
+  - text: 要在外面用餐吗？
+  utter_ask_preferences:
+  - text: Please provide additional preferences
+  - text: 你有什么特殊的口味要求吗？
+  - text: 你有忌口吗？
+  utter_ask_feedback:
+  - text: Please give your feedback on your experience so far
+  - text: 你对我们服务满意吗？
+  utter_submit:
+  - text: All done!
+  - text: 太棒了 👊
+  utter_slots_values:
+  - text: |-
+      I am going to run a restaurant search using the following parameters:
+       - cuisine: {cuisine} 😀 
+       - num_people: {num_people}
+       - outdoor_seating: {outdoor_seating}
+       - preferences: {preferences}
+       - feedback: {feedback}
+  - text: |-
+      你的请求正在搜索中，请您确认以下信息是否正确:
+       - cuisine: {cuisine} 😀 
+       - num_people: {num_people}
+       - outdoor_seating: {outdoor_seating}
+       - preferences: {preferences}
+       - feedback: {feedback}
+  utter_noworries:
+  - text: You are welcome :)
+  utter_chitchat:
+  - text: chitchat
+  utter_ask_continue:
+  - text: Do you want to continue?
+  utter_wrong_cuisine:
+  - text: Cuisine type is not in the database, please try again
+  - text: 你所查询的菜系不在我们的支持范围内
+  utter_wrong_num_people:
+  - text: Number of people should be a positive integer, please try again
+  - text: 你的就餐人数需要是一个正整数，请重新输入
+  utter_wrong_outdoor_seating:
+  - text: Could not convert input to boolean value, please try again
+  - text: 你得说一个跟是否相关的信息
+  utter_default:
+  - text: Sorry, I didn't understand you, please try input something else
+  - text: 不好意思，我还在学习你所说的话，你能重新说一种方式吗？
+  utter_greet:
+  - text: Hello! I am restaurant search assistant! How can I help?
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_restart:
+  - text: restarted
+actions:
+- validate_restaurant_form
+forms:
+  restaurant_form:
+    ignored_intents:
+    - chitchat
+    required_slots:
+      cuisine:
+      - entity: cuisine
+        type: from_entity
+      feedback:
+      - entity: feedback
+        type: from_entity
+      - type: from_text
+      num_people:
+      - entity: number
+        intent:
+        - inform
+        - request_restaurant
+        type: from_entity
+      outdoor_seating:
+      - entity: seating
+        type: from_entity
+      - intent: affirm
+        type: from_intent
+        value: true
+      - intent: deny
+        type: from_intent
+        value: false
+      preferences:
+      - intent: deny
+        type: from_intent
+        value: 没有什么特殊偏好
+      - not_intent: affirm
+        type: from_text
+e2e_actions: []

@@ -1,0 +1,20 @@
+language: "zh"
+
+pipeline:
+# - name: "JiebaTokenizer"
+#   dictionary_path: "data/jieba_userdict/jieba_userdict.txt"
+- name: "SpacyNLP"
+  model: "zh_core_web_sm"
+- name: "SpacyTokenizer"
+- name: "LanguageModelFeaturizer"
+  model_name: "bert"
+  model_weights: "bert-base-chinese"
+- name: "DIETClassifier"
+- name: "ResponseSelector"
+
+
+policies:
+  - name: "MemoizationPolicy"
+  - name: "FormPolicy"
+  - name: "TEDPolicy"
+    epochs: 10

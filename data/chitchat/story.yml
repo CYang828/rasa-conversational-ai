@@ -1,0 +1,16 @@
+# stories:
+# - story: user form happy path
+#   steps:
+#   - intent: wantto
+#   - action: utter_wantto
+#   - active_loop: user_info_form
+#   - active_loop: null 
+#   - action: utter_user_form_slots_filled
+# - story: user form stop path
+#   steps:
+#   - intent: wantto
+#   - action: utter_wantto
+#   - active_loop: user_info_form
+#   - intent: stop
+#   - active_loop: null
+#   - action: utter_user_form_continue

@@ -1,0 +1,43 @@
+language: zh
+
+pipeline:
+- name: SpacyNLP
+  model: zh_core_web_sm
+- name: SpacyTokenizer
+- name: LanguageModelFeaturizer
+  model_name: bert
+  model_weights: bert-base-chinese
+- name: RegexEntityExtractor
+  # text will be processed with case insensitive as default
+  case_sensitive: False
+  # use lookup tables to extract entities
+  use_lookup_tables: True
+  # use regexes to extract entities
+  use_regexes: True
+  # use match word boundaries for lookup table
+  "use_word_boundaries": True
+- name: DIETClassifier
+  epochs: 100
+  ranking_length: 5
+  use_masked_language_model: True
+- name: ResponseSelector
+  epochs: 100
+  retrieval_intent: chitchat
+# - name: FallbackClassifier
+#   # If the highest ranked intent has a confidence lower than the threshold than
+#   # the NLU pipeline predicts an intent `nlu_fallback` which you can then use in
+#   # stories / rules to implement an appropriate fallback.
+#   threshold: 0.5
+
+policies:
+  - name: AugmentedMemoizationPolicy
+  - name: RulePolicy
+    # Confidence of the prediction if no rule matched and de-facto threshold for a
+    # core fallback.
+    core_fallback_threshold: 0.3
+    # Name of the action which should be predicted if no rule matched.
+    core_fallback_action_name: "action_default_fallback"
+    # If `True` `core_fallback_action_name` is predicted in case no rule matched.
+    enable_fallback_prediction: True
+  # - name: TEDPolicy
+  #   epochs: 10

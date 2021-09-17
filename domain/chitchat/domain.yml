@@ -1,0 +1,113 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+  - chitchat
+  - wantto
+  - user_info_name
+  - user_info_age
+  - user_info_phone_number
+  - user_info_education
+  - stop
+  - nlu_fallback
+responses:
+  utter_wantto:  
+  - text: "为了能够帮助你，我得先了解你的信息，请告诉我你的名字、年龄、学历和电话 😘"
+  utter_chitchat/greet:
+  - text: 你好！请问我可以帮到你吗？
+    image: http://aimaksen.bslience.cn/hello.jpeg
+  - text: 你好！很高兴为你服务。请说出你要查询的功能？
+  - text: 你好啊
+  utter_chitchat/goodbye:
+  - text: 再见
+  - text: 拜拜
+  - text: 虽然我有万般舍不得，但是天下没有不散的宴席~祝你安好！
+  - text: 期待下次再见！
+  - text: 嗯嗯，下次需要时随时记得我哟~
+  - text: see you!
+  utter_chitchat/whoareyou:
+  - text: 你好！我是 Aimaksen 呀，你的超级人工智能
+  - text: 我是 Aimaksen，超级人工智能
+  utter_chitchat/whattodo:
+  - text: 我能做的事情可多了，你可以试试哦
+  utter_chitchat/thanks:
+  - text: 嗯呢，不用客气~
+  - text: 这是我该做的
+  - text: 嗯嗯，你太客气了哦
+  utter_chitchat/deny:
+  - text: 你不开心吗？有什么来和我说说
+  - text: 请不要离开哦
+  - text: 你怎么了？
+  utter_chitchat/affirm:
+  - text: 嗯嗯，好的！
+  - text: 嗯嗯，很开心能够帮你解决问题~
+  - text: 嗯嗯，还需要什么我能够帮助你的呢？
+  utter_chitchat/stop:
+  - text: 我没有明白你的意思，可能我还没有那么聪明，但是我一定会学习的~
+  utter_nlu_fallback:
+  - text: 我还没有学会你在说的事情呢
+  utter_user_form_slots_filled:
+  - text: |-
+      你已经提交了下面的信息:
+       - 姓名: {user_name}
+       - 年龄: {user_age}
+       - 学历: {user_education}
+       - 电话: {user_phone_number}
+       马上会有老师联系你哦~
+  utter_user_form_continue:
+  - text: 你不想告诉我你的信息了嘛
+  utter_user_form_submit:
+  - text: "表单填写完了，该做些什么了，我们先把这句话占在这里"
+  utter_ask_user_name:
+  - text: "你的名字是什么？"
+  utter_ask_user_age:
+  - text: "你多大了呢？"
+  utter_ask_user_education:
+  - text: "你的最高学历是什么呢？"
+  utter_ask_user_phone_number:
+  - text: "你的电话号码是多少？"
+entities:
+  - user_name
+  - user_age
+  - user_education
+  - user_phone_number
+slots: 
+  user_name:
+    type: text
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  user_age:
+    type: text
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  user_education:
+    type: text
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+  user_phone_number:
+    type: text
+    initial_value: null
+    auto_fill: false
+    influence_conversation: false
+forms:
+  user_info_form: 
+    required_slots: 
+      user_name: 
+        - type: from_entity
+          entity: user_name
+      user_age: 
+        - type: from_entity
+          entity: user_age
+      user_phone_number:
+        - type: from_entity
+          entity: user_phone_number
+      user_education: 
+        - type: from_entity
+          entity: user_education
+  

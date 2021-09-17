@@ -1,0 +1,163 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+  - health_inform:
+  - out_of_health_inform:
+  - chitchat:
+  - stop:
+  - greet:
+  - request_number:
+  - deny:
+  - affirm:
+  - thanks:
+  - request_weather:
+  - inform:
+  - request_business:
+entities:
+  - exercise
+  - sleep
+  - stress
+  - diet
+  - type
+  - address
+  - date_time
+  - business
+  - number
+slots:
+  is_exercise:
+    type: rasa.shared.core.slots.BooleanSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  exercise:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  sleep:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  diet:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  stress:
+    type: rasa.shared.core.slots.CategoricalSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+    values:
+    - low
+    - medium
+    - high
+  goal:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  business:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  address:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  requested_slot:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  date_time:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  type:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+  number:
+    type: rasa.shared.core.slots.UnfeaturizedSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: false
+responses:
+  utter_ask_is_exercise:
+  - text: 你昨天做运动了吗？
+  utter_ask_exercise:
+  - text: 你做了什么运动 💪 ?
+  utter_ask_sleep:
+  - text: 你昨天睡了多久 💤  ？
+  utter_ask_diet:
+  - text: 你昨天有坚持健康的饮食吗 🥦 ？
+  utter_ask_stress:
+  - buttons:
+    - payload: '/health_inform{"stress": "low"}'
+      title: 低
+    - payload: '/health_inform{"stress": "medium"}'
+      title: 中
+    - payload: '/health_inform{"stress": "high"}'
+      title: 高
+    text: 昨天你的压力登记是怎样的呢 🧘 ？
+  utter_ask_goal:
+  - text: 设置目标 - 哪怕是很小的一个 - 这都是一个帮你专注的方式。你今天想要完成那些事情呢🥇 ?
+  utter_health_slots_values:
+  - text: |-
+      你已经提交了下面的内容:
+       - 训练了吗?: {confirm_exercise}
+       - 训练的类型: {exercise}
+       - 睡了多久: {sleep}
+       - 是否坚持健康的饮食: {diet}
+       - 压力等级: {stress}
+       - 目标: {goal}
+  utter_no_worries:
+  - text: 没问题 :)
+  utter_ask_continue:
+  - text: 不好意思，我没有太理解。你是否想要继续呢？
+  utter_answer_greet:
+  - text: 您好！请问我可以帮到您吗？
+  - image: http://aimaksen.bslience.cn/hello.jpeg
+    text: 您好！很高兴为您服务。请说出您要查询的功能？
+  - text: 你好啊
+  utter_answer_affirm:
+  - text: 嗯嗯，好的！
+  - text: 嗯嗯，很开心能够帮您解决问题~
+  - text: 嗯嗯，还需要什么我能够帮助您的呢？
+  utter_answer_goodbye:
+  - text: 再见
+  - text: 拜拜
+  - text: 虽然我有万般舍不得，但是天下没有不散的宴席~祝您安好！
+  - text: 期待下次再见！
+  - text: 嗯嗯，下次需要时随时记得我哟~
+  - text: see you!
+  utter_answer_deny:
+  - text: 主人，您不开心吗？不要离开我哦
+  - text: 怎么了，主人？
+  utter_answer_thanks:
+  - text: 嗯呢。不用客气~
+  - text: 这是我应该做的，主人~
+  - text: 嗯嗯，合作愉快！
+  utter_answer_whoareyou:
+  - text: 您好！我是小蒋呀，您的AI智能助理
+  utter_answer_whattodo:
+  - text: 您好！很高兴为您服务，我目前只支持查询天气哦。
+actions:
+- utter_answer_affirm
+- utter_answer_deny
+- utter_answer_greet
+- utter_answer_goodbye
+- utter_answer_thanks
+- utter_answer_whoareyou
+- utter_answer_whattodo
+- health_form

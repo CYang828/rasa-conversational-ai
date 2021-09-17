@@ -1,0 +1,33 @@
+version: "2.0"
+stories:
+  - story: happy path
+    steps:
+    - intent: chitchat
+    - action: utter_answer_greet
+    - intent: health_inform
+    - action: health_form
+    - active_loop: health_form           
+    - active_loop: null 
+    - action: utter_health_slots_values
+    - intent: chitchat
+    - action: utter_answer_thanks
+    - intent: chitchat
+    - action: utter_answer_goodbye
+  - story: no form
+    steps:
+    - intent: chitchat
+    - action: utter_answer_greet
+    - intent: chitchat
+    - action: utter_answer_goodbye
+  - story: form stop
+    steps:
+      - intent: chitchat
+      - action: utter_answer_greet
+      - intent: health_inform
+      - action: health_form
+      - active_loop: health_form      
+      - intent: out_of_health_inform
+      - action: utter_ask_continue     
+      - intent: chitchat
+      - active_loop: null 
+      - action: utter_health_slots_values

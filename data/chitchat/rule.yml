@@ -1,0 +1,20 @@
+version: "2.0"
+rules:
+# - rule: 回复闲聊
+#   steps:
+#   - intent: chitchat
+#   - action: utter_chitchat
+- rule: 回复 wantto 并且激活用户信息表单
+  steps:
+    - intent: wantto
+    - active_loop: user_info_form
+    - action: utter_wantto
+
+- rule: 提交用户信息表单
+  condition:
+  - active_loop: user_info_form   
+  steps:
+    - action: user_info_form      
+    - active_loop: null            
+    - action: utter_user_form_submit
+    - action: utter_user_form_slots_filled
