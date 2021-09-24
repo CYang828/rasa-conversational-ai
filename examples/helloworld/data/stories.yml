@@ -27,3 +27,22 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: good
+  - action: action_default_ask_rephrase
+  - action: utter_iamabot
+  - intent: goodbye
+  - action: utter_goodbye
+  - intent: quit
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_happy
+  - intent: bad
+  - action: utter_bad
+  - action: utter_bad

@@ -10,6 +10,7 @@ pipeline:
   model_name: "bert"
   model_weights: "bert-base-chinese"
 - name: "DIETClassifier"
+  constrain_similarities: True
 - name: "ResponseSelector"
 
 

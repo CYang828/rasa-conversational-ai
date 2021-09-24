@@ -14,7 +14,6 @@ nlu:
     - hey dude
     - goodmorning
     - goodevening
-
 - intent: goodbye
   examples: |
     - good afternoon
@@ -28,7 +27,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
 - intent: affirm
   examples: |
     - yes
@@ -37,7 +35,6 @@ nlu:
     - of course
     - that sounds good
     - correct
-
 - intent: deny
   examples: |
     - no
@@ -46,7 +43,6 @@ nlu:
     - I don't think so
     - don't like that
     - no way
-
 - intent: mood_great
   examples: |
     - perfect
@@ -63,7 +59,6 @@ nlu:
     - so so perfect
     - so good
     - so perfect
-
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -80,10 +75,15 @@ nlu:
     - extremly sad
     - so saad
     - so sad
-
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
+- intent: good
+  examples: |
+    - i'm fine, 3q
+- intent: bad
+  examples: |
+    - not ok

@@ -9,6 +9,10 @@ pipeline:
   - name: ResponseSelector
     epochs: 50
     retrieval_intent: chitchat
+  # - name: printer.Printer
+  #   alias: after diet classifier
+  - name: sentiment.SentimentAnalyzer
+
 policies:
   - name: TEDPolicy
     max_history: 5

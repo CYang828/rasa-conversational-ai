@@ -75,5 +75,13 @@ rasa train core -d domain/health/domain.yml -s data/health/story.yml
 RASA_X_PASSWORD=rasa rasa x --domain domain/health/domain.yml 
 ```
 
+## NLU
+
+```bash
+pip install -U pip setuptools wheel
+pip install -U spacy
+python -m spacy download zh_core_web_sm
+```
+
 ## TODO
 [这里](TODO.md) 有项目的 TODO 列表，欢迎提交你的想法，提交 PR，一起建设一个强大的对话机器人。
