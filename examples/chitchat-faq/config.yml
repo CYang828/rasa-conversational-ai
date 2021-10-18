@@ -2,6 +2,7 @@ language: en
 
 pipeline:
   - name: "WhitespaceTokenizer"
+  - name: "MitieFeaturizer"
   - name: "CountVectorsFeaturizer"
   - name: "DIETClassifier"
     entity_recognition: False
