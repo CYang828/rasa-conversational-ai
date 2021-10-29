@@ -6,3 +6,4 @@ results
 .idea
 actions/__pycache__/
 component/__pycache__/
+gridresults/*
