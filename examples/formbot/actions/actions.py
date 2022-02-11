@@ -93,3 +93,9 @@ class ValidateRestaurantForm(FormValidationAction):
         else:
             # affirm/deny was picked up as True/False by the from_intent mapping
             return {"outdoor_seating": value}
+
+    async def run(
+        self, dispatcher, tracker: Tracker, domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+
+        return []

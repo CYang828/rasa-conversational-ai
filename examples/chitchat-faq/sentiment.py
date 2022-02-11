@@ -7,9 +7,7 @@ from rasa.nlu.components import Component
 from rasa.nlu import utils
 from rasa.nlu.model import Metadata
 
-import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import os
 
 
 class SentimentAnalyzer(Component):
@@ -31,6 +29,7 @@ class SentimentAnalyzer(Component):
         **kwargs: Any,
     ) -> None:
         """训练阶段代码"""
+        print('##################### 情感识别训练 ###########################')
         pass
 
     def convert_to_rasa(self, value, confidence):
@@ -48,12 +47,30 @@ class SentimentAnalyzer(Component):
         """使用分类器来处理文本，并且转化为 rasa 能够接受的格式"""
 
         sid = SentimentIntensityAnalyzer()
-        print('##################### 情感识别 ###########################')
-        res = sid.polarity_scores(message.as_dict_nlu()['text'])
-        key, value = max(res.items(), key=lambda x: x[1])
-        entity = self.convert_to_rasa(key, value)
-        message.set("entities", [entity], add_to_output=True)
-
+        print('##################### 情感识别处理 ###########################')
+        try:
+            text = message.data['text']
+            res = sid.polarity_scores(text)
+            key, value = max(res.items(), key=lambda x: x[1])
+            entity = self.convert_to_rasa(key, value)
+            message.set("entities", [entity], add_to_output=True)
+        except KeyError:
+            pass
+        
     def persist(self, file_name: Text, model_dir: Text) -> Optional[Dict[Text, Any]]:
         """组建持久化的运行代码"""
         pass
+
+    @classmethod
+    def load(
+        cls,
+        meta: Dict[Text, Any],
+        model_dir: Text,
+        model_metadata: Optional["Metadata"] = None,
+        cached_component: Optional["Component"] = None,
+        **kwargs: Any,
+    ) -> "Component":
+        if cached_component:
+            return cached_component
+        else:
+            return cls(meta)

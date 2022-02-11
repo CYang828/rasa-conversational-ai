@@ -1,22 +1,26 @@
 language: en
 
 pipeline:
-  - name: "WhitespaceTokenizer"
-  - name: "MitieFeaturizer"
-  - name: "CountVectorsFeaturizer"
-  - name: "DIETClassifier"
-    entity_recognition: False
-    epochs: 50
+  - name: SpacyNLP
+    model: zh_core_web_sm
+  - name: SpacyTokenizer
+  - name: LanguageModelFeaturizer
+    model_name: bert
+    model_weights: bert-base-chinese
+  - name: DIETClassifier
+    epochs: 1
   - name: ResponseSelector
-    epochs: 50
+    epochs: 1
+  - name: ResponseSelector
+    epochs: 1
     retrieval_intent: chitchat
-  # - name: printer.Printer
+  - name: printer.Printer
   #   alias: after diet classifier
   - name: sentiment.SentimentAnalyzer
 
 policies:
   - name: TEDPolicy
     max_history: 5
-    epochs: 100
+    epochs: 10
   - name: MemoizationPolicy
   - name: RulePolicy
